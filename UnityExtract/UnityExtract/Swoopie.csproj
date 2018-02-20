@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3E6B23AE-9D06-400E-810E-B7AF01F7532C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>UnityExtract</RootNamespace>
-    <AssemblyName>UnityExtract</AssemblyName>
+    <RootNamespace>Swoopie</RootNamespace>
+    <AssemblyName>Swoopie</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -153,6 +153,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

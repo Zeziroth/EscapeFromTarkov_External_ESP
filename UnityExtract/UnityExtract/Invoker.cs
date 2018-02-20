@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace UnityExtract
+namespace Swoopie
 {
     static class Invoker
     {

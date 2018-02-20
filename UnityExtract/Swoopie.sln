@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityExtract", "UnityExtract\UnityExtract.csproj", "{3E6B23AE-9D06-400E-810E-B7AF01F7532C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swoopie", "UnityExtract\Swoopie.csproj", "{3E6B23AE-9D06-400E-810E-B7AF01F7532C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

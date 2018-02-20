@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace UnityExtract.MemoryManagement
+namespace Swoopie.MemoryManagement
 {
     public class GameProcess : AbstractGameProcess
     {

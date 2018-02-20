@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnityExtract
+namespace Swoopie
 {
     public static class Base
     {

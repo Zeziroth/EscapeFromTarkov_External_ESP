@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UnityExtract.MemoryManagement
+namespace Swoopie.MemoryManagement
 {
     public interface IProcessMethods
     {

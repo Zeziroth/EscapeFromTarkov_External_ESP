@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using UnityExtract.MemoryManagement;
+using Swoopie.MemoryManagement;
 
-namespace UnityExtract
+namespace Swoopie
 {
 
     static class Memory

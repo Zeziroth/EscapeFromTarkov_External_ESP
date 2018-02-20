@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using UE = UnityEngine;
-namespace UnityExtract
+namespace Swoopie
 {
     public static class EFTCore
     {

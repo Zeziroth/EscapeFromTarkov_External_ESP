@@ -13,7 +13,7 @@ using UE = UnityEngine;
 using System.Collections.Generic;
 using Numerics = System.Numerics;
 
-namespace UnityExtract
+namespace Swoopie
 {
     public partial class Overlay : Form
     {

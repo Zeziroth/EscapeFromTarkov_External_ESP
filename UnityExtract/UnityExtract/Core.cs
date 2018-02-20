@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading;
-namespace UnityExtract
+namespace Swoopie
 {
     static class Core
     {

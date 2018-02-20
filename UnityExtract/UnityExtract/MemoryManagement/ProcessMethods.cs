@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace UnityExtract.MemoryManagement
+namespace Swoopie.MemoryManagement
 {
     public class ProcessMethods : IProcessMethods
     {

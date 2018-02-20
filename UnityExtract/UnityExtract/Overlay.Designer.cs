@@ -1,4 +1,4 @@
-﻿namespace UnityExtract
+﻿namespace Swoopie
 {
     partial class Overlay
     {

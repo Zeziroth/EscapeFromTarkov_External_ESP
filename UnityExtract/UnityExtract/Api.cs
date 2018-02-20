@@ -1,11 +1,11 @@
-﻿using UnityExtract.MemoryManagement;
+﻿using Swoopie.MemoryManagement;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace UnityExtract
+namespace Swoopie
 {
     public class Api
     {

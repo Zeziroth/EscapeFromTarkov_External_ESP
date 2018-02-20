@@ -1,4 +1,4 @@
-﻿namespace UnityExtract
+﻿namespace Swoopie
 {
     partial class Main
     {
@@ -54,7 +54,7 @@
             this.MinimizeBox = false;
             this.Name = "Main";
             this.ShowIcon = false;
-            this.Text = "EscapeFromTarkov Swoopie";
+            this.Text = "EscapeFromTarkov Swoopie *by Zeziroth*";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);

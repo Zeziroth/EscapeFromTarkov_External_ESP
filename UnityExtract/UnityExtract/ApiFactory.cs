@@ -1,7 +1,7 @@
-﻿using UnityExtract.MemoryManagement;
+﻿using Swoopie.MemoryManagement;
 using System;
 
-namespace UnityExtract
+namespace Swoopie
 {
     public static class ApiFactory
     {

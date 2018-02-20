@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace UnityExtract
+namespace Swoopie
 {
     public partial class Main : Form
     {
