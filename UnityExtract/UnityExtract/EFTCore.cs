@@ -11,12 +11,12 @@ namespace Swoopie
         public static readonly string procName = "escapefromtarkov";
         public static readonly long GOM = 0x14327E0;
 
-        public static IntPtr gameObjectManager = Base.GetPtr(new IntPtr(Memory.ImageBase().ToInt64() + GOM), new int[] { });
+        public static IntPtr gameObjectManager; // = Base.GetPtr(new IntPtr(Memory.ImageBase().ToInt64() + GOM), new int[] { });
 
-        public static IntPtr gameWorld = new IntPtr(0x0);
+        public static IntPtr gameWorld; // = new IntPtr(0x0);
 
         private static readonly int[] fpsCameraStruct = new int[] { 0x30, 0x18 };
-        public static IntPtr fpsCamera = new IntPtr(0x0);
+        public static IntPtr fpsCamera; // = new IntPtr(0x0);
 
         private static readonly int[] localGameWorldStruct = new int[] { 0x30, 0x18, 0x28 };
         public static IntPtr localGameWorld = new IntPtr(0x0);
@@ -37,51 +37,34 @@ namespace Swoopie
             }
             catch { }
         }
+
         public static IntPtr GameWorld()
         {
             gameWorld = new IntPtr(0x0);
-            gameWorld = FindActiveObject("gameworld");
+            gameWorld = FindObject("gameworld", true);
             return gameWorld;
         }
+
         public static IntPtr FTPCamera()
         {
             fpsCamera = new IntPtr(0x0);
-            fpsCamera = FindTaggedObject("fps camera");
+            fpsCamera = FindObject("fps camera", false);
             return fpsCamera;
         }
-        private static IntPtr FindTaggedObject(string objName)
-        {
-            int limit = 350;
-            StringBuilder objNames = new StringBuilder();
-            IntPtr output = new IntPtr(0x0);
-            if (!Memory.isRunning())
-            {
-                return output;
-            }
-            for (int curObject = 0x1; curObject < limit; curObject++)
-            {
-                List<int> newStruct = new List<int>() { 0x8 };
-                List<int> depth = Enumerable.Repeat(0x8, curObject).ToList();
-                newStruct.AddRange(depth);
-                newStruct.AddRange(new int[] { 0x10, 0x60, 0x0 });
 
-                long newAddr = Base.GetPtr(gameObjectManager, newStruct.ToArray()).ToInt64();
-
-                string objectName = Memory.ReadOld<string>(newAddr, 10);
-                objNames.AppendLine(objectName);
-                if (objectName.ToLower() == objName.ToLower())
-                {
-                    newStruct.RemoveAt(newStruct.Count() - 1);
-                    newStruct.RemoveAt(newStruct.Count() - 1);
-                    output = Base.GetPtr(gameObjectManager, newStruct.ToArray());
-                }
-            }
-            return output;
-        }
-        private static IntPtr FindActiveObject(string objName)
+        private static IntPtr FindObject(string objName, bool findActiveObject)
         {
+            // FindTaggedObject
+            int tagged_or_active = 0x8;
+
+            // FindActiveObject
+            if (findActiveObject)
+            {
+                tagged_or_active = 0x18;
+            }
+
             int limit = 350;
-            StringBuilder objNames = new StringBuilder();
+            //StringBuilder objNames = new StringBuilder(); why?
             IntPtr output = IntPtr.Zero;
             if (!Memory.isRunning())
             {
@@ -89,15 +72,15 @@ namespace Swoopie
             }
             for (int curObject = 0x1; curObject < limit; curObject++)
             {
-                List<int> newStruct = new List<int>() { 0x18 };
+                List<int> newStruct = new List<int>() { tagged_or_active };
                 List<int> depth = Enumerable.Repeat(0x8, curObject).ToList();
                 newStruct.AddRange(depth);
                 newStruct.AddRange(new int[] { 0x10, 0x60, 0x0 });
 
                 long newAddr = Base.GetPtr(gameObjectManager, newStruct.ToArray()).ToInt64();
 
-                string objectName = Memory.ReadOld<string>(newAddr, 9);
-                objNames.AppendLine(objectName);
+                string objectName = Memory.ReadOld<string>(newAddr, objName.Length);
+                //objNames.AppendLine(objectName); why? it is not used anywhere
                 if (objectName.ToLower() == objName.ToLower())
                 {
                     newStruct.RemoveAt(newStruct.Count() - 1);
@@ -107,6 +90,8 @@ namespace Swoopie
             }
             return output;
         }
+
+
         public static IntPtr LocalGameWorld()
         {
             localGameWorld = new IntPtr(0x0);

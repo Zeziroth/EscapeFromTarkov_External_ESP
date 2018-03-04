@@ -14,16 +14,17 @@ namespace Swoopie
         static readonly int PROCESS_WM_READ = 0x0010;
         const int PROCESS_VM_WRITE = 0x0020;
         const int PROCESS_VM_OPERATION = 0x0008;
-        public static Process p;
+        public static Process process;
         public static Api api = null;
+        static IntPtr processHandle = IntPtr.Zero;
 
         public static IntPtr ImageBase()
         {
             if (!isRunning())
             {
-                return (IntPtr)0x0;
+                return IntPtr.Zero;
             }
-            IntPtr baseAddress = p.MainModule.BaseAddress;
+            IntPtr baseAddress = process.MainModule.BaseAddress;
             return baseAddress;
         }
 
@@ -46,7 +47,7 @@ namespace Swoopie
             {
                 return null;
             }
-            IntPtr processHandle = OpenProcess(PROCESS_WM_READ, false, p.Id);
+            IntPtr processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);
 
             int bytesRead = 0;
             byte[] buffer = new byte[bufferSize];
@@ -62,7 +63,7 @@ namespace Swoopie
                 int size = Marshal.SizeOf(typeof(T));
                 byte[] buffer = new byte[len];
                 int read = 0;
-                IntPtr processHandle = OpenProcess(PROCESS_WM_READ, false, p.Id);
+                IntPtr processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);
                 ReadProcessMemory((int)processHandle, address, buffer, len, ref read);
                 GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
                 T data = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
@@ -80,7 +81,7 @@ namespace Swoopie
             {
                 return (T)Convert.ChangeType("0", typeof(T)); ;
             }
-            IntPtr processHandle = OpenProcess(PROCESS_WM_READ, false, p.Id);
+            IntPtr processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);
 
             int bytesRead = 0;
             byte[] buffer = new byte[bufferSize];
@@ -114,7 +115,7 @@ namespace Swoopie
             {
                 return (T)Convert.ChangeType("0", typeof(T)); ;
             }
-            IntPtr processHandle = OpenProcess(PROCESS_WM_READ, false, p.Id);
+            IntPtr processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);
 
             int bytesRead = 0;
             byte[] buffer = new byte[bufferSize];
@@ -156,7 +157,7 @@ namespace Swoopie
                 int size = customSize == -1 ? Marshal.SizeOf(typeof(T)) : customSize;
                 byte[] buffer = new byte[size];
                 int read = 0;
-                IntPtr processHandle = OpenProcess(PROCESS_WM_READ, false, p.Id);
+                IntPtr processHandle = OpenProcess(PROCESS_WM_READ, false, process.Id);
                 if (addBase)
                 {
                     ReadProcessMemory((int)processHandle, Memory.ImageBase().ToInt64() + address, buffer, size, ref read);
@@ -206,7 +207,7 @@ namespace Swoopie
             {
                 value = val;
             }
-            success = WriteProcessMemory(p.Handle, (IntPtr)address, value, (IntPtr)value.Length, ref nBytesRead);
+            success = WriteProcessMemory(process.Handle, (IntPtr)address, value, (IntPtr)value.Length, ref nBytesRead);
         }
         public static void WriteInt(long address, int value)
         {
@@ -217,7 +218,7 @@ namespace Swoopie
             bool success;
             byte[] buffer = BitConverter.GetBytes(value);
             UInt32 nBytesRead = 0;
-            success = WriteProcessMemory(p.Handle, (IntPtr)address, buffer, (IntPtr)4, ref nBytesRead);
+            success = WriteProcessMemory(process.Handle, (IntPtr)address, buffer, (IntPtr)4, ref nBytesRead);
         }
         public static void WriteFloat(long address, float value)
         {
@@ -228,7 +229,7 @@ namespace Swoopie
             bool success;
             byte[] buffer = BitConverter.GetBytes(value);
             UInt32 nBytesRead = 0;
-            success = WriteProcessMemory(p.Handle, (IntPtr)address, buffer, (IntPtr)4, ref nBytesRead);
+            success = WriteProcessMemory(process.Handle, (IntPtr)address, buffer, (IntPtr)4, ref nBytesRead);
         }
         public static void WriteShort(long address, short value)
         {
@@ -239,7 +240,7 @@ namespace Swoopie
             bool success;
             byte[] buffer = BitConverter.GetBytes(value);
             UInt32 nBytesRead = 0;
-            success = WriteProcessMemory(p.Handle, (IntPtr)address, buffer, (IntPtr)2, ref nBytesRead);
+            success = WriteProcessMemory(process.Handle, (IntPtr)address, buffer, (IntPtr)2, ref nBytesRead);
         }
         public static void WriteByte(long address, byte value)
         {
@@ -250,17 +251,17 @@ namespace Swoopie
             bool success;
             byte[] buffer = BitConverter.GetBytes(value);
             UInt32 nBytesRead = 0;
-            success = WriteProcessMemory(p.Handle, (IntPtr)address, buffer, (IntPtr)1, ref nBytesRead);
+            success = WriteProcessMemory(process.Handle, (IntPtr)address, buffer, (IntPtr)1, ref nBytesRead);
         }
         #endregion
         public static bool isRunning()
         {
             try
             {
-                p = Process.GetProcessesByName(EFTCore.procName)[0];
-                if (api == null && p != null)
+                process = Process.GetProcessesByName(EFTCore.procName)[0];
+                if (api == null && process != null)
                 {
-                    api = ApiFactory.Create(new GameProcess(p, false));
+                    api = ApiFactory.Create(new GameProcess(process, false));
                 }
                 return true;
             }
