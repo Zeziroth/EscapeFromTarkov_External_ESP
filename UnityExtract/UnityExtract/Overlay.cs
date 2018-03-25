@@ -119,17 +119,12 @@ namespace Swoopie
 
                     int i = EFTCore.PlayerCount();
                     string hex = EFTCore.gameWorld.ToString("X");
+
                     while (!Memory.isRunning() || EFTCore.PlayerCount() == 0)
                     {
                         EFTCore.Init();
-                        newRound = true;
                     }
-                    if (newRound)
-                    {
-                        EFTCore.Init();
-                        
-                        newRound = false;
-                    }
+
                     _device.BeginDraw();
                     _device.Clear(SharpDX.Color.Transparent);
                     _device.TextAntialiasMode = SharpDX.Direct2D1.TextAntialiasMode.Aliased;
@@ -143,7 +138,7 @@ namespace Swoopie
                         {
                             strBuild.AppendLine(player.Username() + " " + Math.Round(player.distance, 0) + "m");
                         }
-                        
+
                         if (player.isPlayer() && player.distance <= playerLimit || !player.isPlayer() && player.distance <= npcLimit)
                         {
                             UE.Vector3 coords;
@@ -171,8 +166,8 @@ namespace Swoopie
                         }
                     }
 
-                    //WriteCenterText("Gameworld: " + EFTCore.gameWorld.ToString("X"), this.Height/2, Brushes.WHITE);
-                    //WriteCenterText("FPS Camera: " + EFTCore.fpsCamera.ToString("X"), (this.Height/2)+50, Brushes.WHITE);
+                    //WriteCenterText("Gameworld: " + EFTCore.gameWorld.ToString("X"), this.Height / 2, Brushes.WHITE);
+                    //WriteCenterText("FPS Camera: " + EFTCore.fpsCamera.ToString("X"), (this.Height / 2) + 50, Brushes.WHITE);
                     WriteBottomText(strBuild.ToString(), 50, Brushes.WHITE, 16);
                     _device.Flush();
                     _device.EndDraw();

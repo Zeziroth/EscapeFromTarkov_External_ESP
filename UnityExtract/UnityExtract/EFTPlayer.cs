@@ -16,35 +16,35 @@ namespace Swoopie
             _baseAddr = addr;
 
             structs = new ReflectStructure(_baseAddr, new Dictionary<string, Dictionary<int, int[]>>() {
-            { "IS_PLAYER", new Dictionary<int, int[]>(){ { 32, new int[] { 0x320, 0x20 } } } },
+            { "IS_PLAYER", new Dictionary<int, int[]>(){ { 32, new int[] { 0x398, 0x20 } } } },
 
-            { "USERNAME", new Dictionary<int, int[]>(){ { 32, new int[] { 0x320, 0x28, 0x10, 0x14 } } } },
-            { "WATER_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x10, 0x20 } } } },
-            { "WATER_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x10, 0x24 } } } },
+            { "USERNAME", new Dictionary<int, int[]>(){ { 32, new int[] { 0x398, 0x28, 0x10, 0x14 } } } },
+            { "WATER_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x10, 0x20 } } } },
+            { "WATER_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x10, 0x24 } } } },
 
-            { "ENERGY_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x18, 0x20 } } } },
-            { "ENERGY_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x18, 0x24 } } } },
+            { "ENERGY_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x18, 0x20 } } } },
+            { "ENERGY_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x18, 0x24 } } } },
 
-            { "HEAD_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x20, 0x20 } } } },
-            { "HEAD_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x20, 0x24 } } } },
+            { "HEAD_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x20, 0x20 } } } },
+            { "HEAD_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x20, 0x24 } } } },
 
-            { "CHEST_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x28, 0x20 } } } },
-            { "CHEST_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x28, 0x24 } } } },
+            { "CHEST_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x28, 0x20 } } } },
+            { "CHEST_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x28, 0x24 } } } },
 
-            { "STOMACH_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x30, 0x20 } } } },
-            { "STOMACH_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x30, 0x24 } } } },
+            { "STOMACH_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x30, 0x20 } } } },
+            { "STOMACH_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x30, 0x24 } } } },
 
-            { "LEFTARM_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x38, 0x20 } } } },
-            { "LEFTARM_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x38, 0x24 } } } },
+            { "LEFTARM_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x38, 0x20 } } } },
+            { "LEFTARM_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x38, 0x24 } } } },
 
-            { "RIGHTARM_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x40, 0x20 } } } },
-            { "RIGHTARM_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x40, 0x24 } } } },
+            { "RIGHTARM_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x40, 0x20 } } } },
+            { "RIGHTARM_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x40, 0x24 } } } },
 
-            { "LEFTLEG_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x48, 0x20 } } } },
-            { "LEFTLEG_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x48, 0x24 } } } },
+            { "LEFTLEG_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x48, 0x20 } } } },
+            { "LEFTLEG_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x48, 0x24 } } } },
 
-            { "RIGHTLEG_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x50, 0x20 } } } },
-            { "RIGHTLEG_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x320, 0x40, 0x20, 0x10, 0x50, 0x24 } } } },
+            { "RIGHTLEG_CUR", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x50, 0x20 } } } },
+            { "RIGHTLEG_MAX", new Dictionary<int, int[]>(){ { 4, new int[] { 0x398, 0x40, 0x20, 0x10, 0x50, 0x24 } } } },
 
             { "POS_X", new Dictionary<int, int[]>(){ { 4, new int[] { 0x58, 0x30 } } } },
             { "POS_Y", new Dictionary<int, int[]>(){ { 4, new int[] { 0x58, 0x34 } } } },
@@ -57,7 +57,7 @@ namespace Swoopie
         }
         public string Username()
         {
-            IntPtr playerNameAddr = Base.GetPtr(_baseAddr, new int[] { 0x320, 0x28, 0x10, 0x14 });
+            IntPtr playerNameAddr = Base.GetPtr(_baseAddr, new int[] { 0x398, 0x28, 0x10, 0x14 });
             byte[] usernameBytes = Memory.ReadBytes(playerNameAddr.ToInt64(), 32);
             List<byte> clearBytes = new List<byte>();
 

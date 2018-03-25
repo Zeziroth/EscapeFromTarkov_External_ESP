@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using UE = UnityEngine;
+
 namespace Swoopie
 {
     public static class EFTCore
@@ -74,6 +75,7 @@ namespace Swoopie
                     newStruct.RemoveAt(newStruct.Count() - 1);
                     newStruct.RemoveAt(newStruct.Count() - 1);
                     output = Base.GetPtr(gameObjectManager, newStruct.ToArray());
+                    return output;
                 }
             }
             return output;
@@ -103,6 +105,7 @@ namespace Swoopie
                     newStruct.RemoveAt(newStruct.Count() - 1);
                     newStruct.RemoveAt(newStruct.Count() - 1);
                     output = Base.GetPtr(gameObjectManager, newStruct.ToArray());
+                    return output;
                 }
             }
             return output;
@@ -130,7 +133,8 @@ namespace Swoopie
             try
             {
                 IntPtr countAddr = Base.GetPtr(registeredPlayers, playerCountStruct);
-                return Memory.Read<int>(countAddr.ToInt64());
+                int playerCount = Memory.Read<int>(countAddr.ToInt64());
+                return playerCount;
             }
             catch
             {
@@ -145,7 +149,7 @@ namespace Swoopie
             for (int i = 0x0; i < limit; i++)
             {
                 IntPtr playerObjAddr = Base.GetPtr(registeredPlayers, new int[] { 0x10, 0x20 + i * 0x8 });
-                IntPtr playerNameAddr = Base.GetPtr(playerObjAddr, new int[] { 0x320, 0x28, 0x10, 0x14 });
+                IntPtr playerNameAddr = Base.GetPtr(playerObjAddr, new int[] { 0x398, 0x28, 0x10, 0x14 });
 
                 EFTPlayer member = new EFTPlayer(playerObjAddr);
                 users.Add(member);
@@ -167,6 +171,10 @@ namespace Swoopie
         {
             try
             {
+                foreach (EFTPlayer player in AllPlayers())
+                {
+                    string uname = player.Username();
+                }
                 return AllPlayers().Where(u => u.Username().ToLower() == username.ToLower()).First();
             }
             catch
